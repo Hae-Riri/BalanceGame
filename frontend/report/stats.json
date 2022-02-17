@@ -1,8 +1,8 @@
 {
-  "hash": "89a54b033635fa69e1d3",
+  "hash": "5f459b764ea96a977443",
   "version": "5.69.0",
-  "time": 4158,
-  "builtAt": 1645034835316,
+  "time": 4121,
+  "builtAt": 1645058475630,
   "publicPath": "/",
   "outputPath": "/Users/a1101697/IdeaProjects/board/frontend/build",
   "assetsByChunkName": {
@@ -166,14 +166,14 @@
     {
       "type": "asset",
       "name": "manifest.json",
-      "size": 141,
+      "size": 132,
       "emitted": true,
       "comparedForEmit": false,
       "cached": false,
       "info": {
         "copied": true,
         "sourceFilename": "public/manifest.json",
-        "size": 141
+        "size": 132
       },
       "chunkNames": [],
       "chunkIdHints": [],
@@ -3385,10 +3385,10 @@
   "children": [
     {
       "name": "HtmlWebpackCompiler",
-      "hash": "c01d527cd4375ebbd62e",
+      "hash": "eb644930ed0217c00984",
       "version": "5.69.0",
-      "time": 132,
-      "builtAt": 1645034831331,
+      "time": 108,
+      "builtAt": 1645058471661,
       "publicPath": "",
       "outputPath": "/Users/a1101697/IdeaProjects/board/frontend/build",
       "assetsByChunkName": {},
@@ -3399,9 +3399,9 @@
           "initial": true,
           "entry": true,
           "recorded": false,
-          "size": 987,
+          "size": 989,
           "sizes": {
-            "javascript": 532,
+            "javascript": 534,
             "runtime": 455
           },
           "names": ["HtmlWebpackPlugin_1-0"],
@@ -3409,7 +3409,7 @@
           "runtime": ["HtmlWebpackPlugin_1-0"],
           "files": [],
           "auxiliaryFiles": [],
-          "hash": "27eba424c659711cc298",
+          "hash": "93a433a9f00dccf40c5e",
           "childrenByOrder": {},
           "id": 251,
           "siblings": [],
@@ -3420,9 +3420,9 @@
               "type": "module",
               "moduleType": "javascript/auto",
               "layer": null,
-              "size": 455,
+              "size": 457,
               "sizes": {
-                "javascript": 455
+                "javascript": 457
               },
               "built": true,
               "codeGenerated": true,
@@ -3694,9 +3694,9 @@
           "initial": true,
           "entry": true,
           "recorded": false,
-          "size": 1558,
+          "size": 1541,
           "sizes": {
-            "javascript": 1103,
+            "javascript": 1086,
             "runtime": 455
           },
           "names": ["HtmlWebpackPlugin_0-0"],
@@ -3704,7 +3704,7 @@
           "runtime": ["HtmlWebpackPlugin_0-0"],
           "files": [],
           "auxiliaryFiles": [],
-          "hash": "1c1cc9d3bf20e7be6463",
+          "hash": "f8842b9e72964fb99c94",
           "childrenByOrder": {},
           "id": 563,
           "siblings": [],
@@ -3715,9 +3715,9 @@
               "type": "module",
               "moduleType": "javascript/auto",
               "layer": null,
-              "size": 1026,
+              "size": 1009,
               "sizes": {
-                "javascript": 1026
+                "javascript": 1009
               },
               "built": true,
               "codeGenerated": true,
@@ -4057,9 +4057,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 1026,
+          "size": 1009,
           "sizes": {
-            "javascript": 1026
+            "javascript": 1009
           },
           "built": true,
           "codeGenerated": true,
@@ -4141,9 +4141,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 455,
+          "size": 457,
           "sizes": {
-            "javascript": 455
+            "javascript": 457
           },
           "built": true,
           "codeGenerated": true,
