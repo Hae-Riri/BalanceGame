@@ -6,8 +6,8 @@
 
 ## Required Next Work
 
-[//]: # (REQUIREMENTS.md(기능 구현 목록)는 추후 추가예정입니다.)
-[//]: # (spring 설정시 필요한 버전 정보 ~~) 
+> REQUIREMENTS.md(기능 구현 목록)는 추후 추가예정입니다.
+> spring 설정시 필요한 버전 정보 ~~
 
 ## Self Checklist
 
