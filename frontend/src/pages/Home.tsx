@@ -1,14 +1,20 @@
 import React from 'react';
 
-import Spinner from '@/components';
+import Blur from '@/components/Blur';
+import Section from '@/components/Section';
+import Title from '@/components/Title';
+import Header from '@/components/Header';
 
 const Home = () => {
   return (
-    <>
-      <Spinner />
-      <p>Home</p>
-      <a href="/article">article</a>
-    </>
+    <Section className="home">
+      <Blur>
+        <Header>
+          <Title text="11st Balance Game" />
+        </Header>
+        <a href="/article">article</a>
+      </Blur>
+    </Section>
   );
 };
 
