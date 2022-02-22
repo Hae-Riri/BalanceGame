@@ -16,7 +16,7 @@ const Footer = () => {
       <Text text="copyrightⓒ 2022 All rights reserved by" className="copyright"/>
       <Text className="footer__link-github" Tag="div">
         {githubIds.map((id) => (
-          <GithubIdLink id={id} />
+          <GithubIdLink key={id} id={id} />
         ))}
       </Text>
     </footer>
