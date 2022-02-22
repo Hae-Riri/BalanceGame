@@ -1,4 +1,4 @@
-import { extendObservable, makeObservable} from 'mobx';
+import { extendObservable, makeObservable } from 'mobx';
 // import { action, extendObservable, makeObservable, observable } from 'mobx';
 import HomeStore from '../stores/HomeStore';
 

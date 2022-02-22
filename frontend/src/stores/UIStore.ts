@@ -1,4 +1,4 @@
-import { makeObservable} from 'mobx';
+import { makeObservable } from 'mobx';
 // import { makeObservable, observable, action } from 'mobx';
 
 import RootStore from './RootStore';
@@ -6,19 +6,19 @@ import RootStore from './RootStore';
 class UIStore {
   rootStore: RootStore;
 
-//   isAlarmInputShow = false;
+  //   isAlarmInputShow = false;
 
   constructor(rootStore: RootStore) {
     makeObservable(this, {
-    //   isAlarmInputShow: observable,
-    //   setIsAlarmInputShow: action,
+      //   isAlarmInputShow: observable,
+      //   setIsAlarmInputShow: action,
     });
     this.rootStore = rootStore;
   }
 
-//   setIsAlarmInputShow(isAlarmInputShow: boolean) {
-//     this.isAlarmInputShow = isAlarmInputShow;
-//   }
+  //   setIsAlarmInputShow(isAlarmInputShow: boolean) {
+  //     this.isAlarmInputShow = isAlarmInputShow;
+  //   }
 }
 
 export default UIStore;
