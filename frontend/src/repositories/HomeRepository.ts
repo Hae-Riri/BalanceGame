@@ -1,6 +1,6 @@
 import API from '@/utils/api';
 
-class AuthRepository {
+class HomeRepository {
   URL = process.env.ENV === 'local' ? '/articles' : '/v1/articles';
 
   constructor(url: string) {
@@ -13,4 +13,4 @@ class AuthRepository {
   }
 }
 
-export default new AuthRepository('');
+export default new HomeRepository('');
