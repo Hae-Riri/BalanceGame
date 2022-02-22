@@ -6,6 +6,10 @@ export const paths = [
     {
       label: '기사',
       path: '/article',
+    },
+    {
+      label: '질문등록',
+      path: '/article/form',
     }
   ];
   
