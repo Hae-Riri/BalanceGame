@@ -3,8 +3,8 @@
 .title {
   text-align: center;
   height: 60px;
-  margin: auto;
-  line-height: 60px;
+  margin: auto 10px;
+  line-height: 50px;
   color: rgb(53, 53, 53);
   z-index: $HEADER_TITLE_Z_INDEX;
 }

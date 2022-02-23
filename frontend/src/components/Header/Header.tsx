@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 
 interface IHeader {
-  className: String;
+  className?: String;
   children: React.ReactNode;
 }
 

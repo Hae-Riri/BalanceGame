@@ -35,6 +35,8 @@ class HomeStore {
 
   *fetchArticles() {
     this.setIsLoading(true);
+    this.reset();
+
     try {
       const { data } = yield HomeRepository.getArticle();
       this.setArticles(data);
@@ -46,6 +48,10 @@ class HomeStore {
     }
 
     this.setIsLoading(false);
+  }
+
+  reset() {
+    this.timeLine = { days: [], timeLine: {} };
   }
 
   groupByDay(data: ArticleModel[]) {

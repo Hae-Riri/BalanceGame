@@ -44,6 +44,7 @@ class SearchResultStore {
 
   *fetchArticles() {
     this.setIsLoading(true);
+    this.reset();
 
     const { selectedCategory } = this.rootStore.uiStore;
 
@@ -60,6 +61,10 @@ class SearchResultStore {
     }
 
     this.setIsLoading(false);
+  }
+
+  reset() {
+    this.timeLine = { days: [], timeLine: {} };
   }
 
   groupByDay(data: ArticleModel[]) {
