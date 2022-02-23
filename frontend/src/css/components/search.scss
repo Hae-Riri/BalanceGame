@@ -1,15 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 $SEARCH_BOX_WIDTH: 350px;
-$SEARCH_BOX_HEIGHT: 25px;
 
 $DROPDOWN_WIDTH: 120px;
-$DROPDOWN_ELEMENT_WIDTH: $DROPDOWN_WIDTH - 50px;
+$DROPDOWN_ELEMENT_WIDTH: $DROPDOWN_WIDTH - 25px;
 
 $SEARCH_DROPDOWN_BACKGROUND_COLOR: #fff;
 $SEARCH_DROPDOWN_COLOR: #0e0e0e;
 $SEARCH_PLACEHOLDER_COLOR: #9fa3b1;
 $SEARCH_COLOR: black;
+
+$SEARCH_BOX_ZINDEX: 2;
 
 .wrapper {
   display: flex;
@@ -22,7 +23,6 @@ $SEARCH_COLOR: black;
     width: $SEARCH_BOX_WIDTH;
     background: $SEARCH_DROPDOWN_BACKGROUND_COLOR;
     border-radius: 5px;
-    height: $SEARCH_BOX_HEIGHT;
     display: flex;
     padding: 10px;
     box-shadow: 0 8px 6px -10px #b3c6ff;
@@ -41,11 +41,12 @@ $SEARCH_COLOR: black;
         text-align: left;
         text-transform: uppercase;
         font-size: 14px;
+        margin-bottom: 2px;
       }
 
       & ul {
         position: absolute;
-        top: 25px;
+        top: 35px;
         left: -10px;
         background: $SEARCH_DROPDOWN_BACKGROUND_COLOR;
         width: $DROPDOWN_ELEMENT_WIDTH;
@@ -58,6 +59,8 @@ $SEARCH_COLOR: black;
       }
 
       & ul {
+        z-index: $SEARCH_BOX_ZINDEX;
+
         &.active {
           display: block;
         }
@@ -79,7 +82,7 @@ $SEARCH_COLOR: black;
       &::before {
         content: '';
         position: absolute;
-        top: 5px;
+        top: 6px;
         right: 5px;
         border: 8px solid;
         border-color: #5078ef transparent transparent transparent;
@@ -100,11 +103,15 @@ $SEARCH_COLOR: black;
         color: $SEARCH_COLOR;
       }
 
+      & input:focus {
+        outline: none;
+      }
+
       & .fas {
         position: absolute;
-        top: 2px;
-        right: 5px;
-        font-size: 22px;
+        top: 4px;
+        right: 10px;
+        font-size: 18px;
         color: #5078ef;
         cursor: pointer;
       }

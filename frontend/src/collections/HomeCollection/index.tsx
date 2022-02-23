@@ -4,17 +4,16 @@ import { observer } from 'mobx-react-lite';
 import StoreContext from '@/contexts/Store';
 import RootStore from '@/stores/RootStore';
 import Search from '@/components/Search';
-
-import ArticleList from '../ArticleCollection/ArticleList';
+import TimeLine from '@/components/TimeLine';
 
 interface IHomeCollectionProps {}
 
 const HomeCollection = () => {
   const rootStore: RootStore = useContext(StoreContext) as RootStore;
   const { homeStore: store, uiStore } = rootStore;
-  const { articles } = store;
+  const { timeLine } = store;
 
-  const content = !rootStore.isLoading && articles.length > 0 ? <ArticleList articles={articles} /> : null;
+  const content = !rootStore.isLoading && timeLine.days.length > 0 ? <TimeLine timeLine={timeLine} /> : null;
 
   return (
     <>

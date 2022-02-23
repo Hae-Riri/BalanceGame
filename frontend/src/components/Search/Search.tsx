@@ -54,7 +54,7 @@ const Search = ({ uiStore }: { uiStore: UIStore }) => {
           </ul>
         </div>
         <div className="search_field">
-          <input type="search" className="input" placeholder="Search" />
+          <input type="text" className="input" placeholder="Search" />
           <i className="fas fa-search" />
         </div>
       </div>
