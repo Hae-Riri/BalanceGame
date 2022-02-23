@@ -4,7 +4,7 @@ import cx from 'classnames';
 
 import UIStore from '@/stores/UIStore';
 
-const Search = ({ uiStore }: { uiStore: UIStore }) => {
+const Search = ({ uiStore, className }: { uiStore: UIStore; className: string }) => {
   const {
     isHomeSearchDropDownActive,
     setIsHomeSearchDropDownActive,
@@ -34,7 +34,7 @@ const Search = ({ uiStore }: { uiStore: UIStore }) => {
   };
 
   return (
-    <div className="wrapper">
+    <div className={cx('wrapper', className)}>
       <div className="search_box">
         <div
           className="dropdown"
