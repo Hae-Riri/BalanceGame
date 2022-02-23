@@ -12,7 +12,7 @@ class HomeStore {
 
   public articles: ArticleModel[] = [];
 
-  public timeLine = {};
+  public timeLine: { days: string[]; timeLine: {} } = { days: [], timeLine: {} };
 
   constructor(rootStore: RootStore) {
     makeObservable(this, {
@@ -60,7 +60,7 @@ class HomeStore {
       history[day] = history[day].concat(cur);
 
       return history;
-    }, this.timeLine);
+    }, this.timeLine.timeLine);
 
     return {
       days: Object.keys(timeLine).sort((a, b) => (dayjs(b).isBefore(a, 'date') ? -1 : 1)),
