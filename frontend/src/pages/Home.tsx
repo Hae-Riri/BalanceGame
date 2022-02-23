@@ -10,6 +10,8 @@ import Search from '@/components/Search';
 import RootStore from '@/stores/RootStore';
 import StoreContext from '@/contexts/Store';
 import ArticleCollection from '@/collections/ArticleCollection';
+import EditButton from '@/components/EditButton';
+
 
 const Home = () => {
   const rootStore: RootStore = useContext(StoreContext) as RootStore;
@@ -39,6 +41,8 @@ const Home = () => {
         <Search />
 
         <br />
+
+        <EditButton />
 
         <ArticleCollection />
 
