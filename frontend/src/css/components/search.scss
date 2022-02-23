@@ -1,3 +1,5 @@
+@import './z-index.scss';
+
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 $SEARCH_BOX_WIDTH: 350px;
@@ -9,8 +11,6 @@ $SEARCH_DROPDOWN_BACKGROUND_COLOR: #fff;
 $SEARCH_DROPDOWN_COLOR: #0e0e0e;
 $SEARCH_PLACEHOLDER_COLOR: #9fa3b1;
 $SEARCH_COLOR: black;
-
-$SEARCH_BOX_ZINDEX: 2;
 
 .wrapper {
   display: flex;
@@ -59,7 +59,7 @@ $SEARCH_BOX_ZINDEX: 2;
       }
 
       & ul {
-        z-index: $SEARCH_BOX_ZINDEX;
+        z-index: $SEARCH_BOX_Z_INDEX;
 
         &.active {
           display: block;
