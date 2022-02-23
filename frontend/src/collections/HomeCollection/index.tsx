@@ -5,6 +5,7 @@ import StoreContext from '@/contexts/Store';
 import RootStore from '@/stores/RootStore';
 import Search from '@/components/Search';
 import TimeLine from '@/components/TimeLine';
+import BalanceGame from '@/components/BalanceGame';
 
 interface IHomeCollectionProps {}
 
@@ -17,6 +18,7 @@ const HomeCollection = () => {
 
   return (
     <>
+      <BalanceGame />
       <Search uiStore={uiStore} />
       {content}
     </>
