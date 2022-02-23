@@ -71,6 +71,7 @@
     "axios": "^0.26.0",
     "chakra-react-select": "^3.0.4",
     "classnames": "^2.3.1",
+    "dayjs": "^1.10.7",
     "framer-motion": "^6",
     "mobx": "^6.3.7",
     "mobx-react-lite": "^3.2.2",

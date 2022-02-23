@@ -6,12 +6,10 @@ import Section from '@/components/Section';
 import Title from '@/components/Title';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Search from '@/components/Search';
 import RootStore from '@/stores/RootStore';
 import StoreContext from '@/contexts/Store';
-import ArticleCollection from '@/collections/ArticleCollection';
 import EditButton from '@/components/EditButton';
-
+import HomeCollection from '@/collections/HomeCollection';
 
 const Home = () => {
   const rootStore: RootStore = useContext(StoreContext) as RootStore;
@@ -37,15 +35,14 @@ const Home = () => {
         <Header>
           <Title text="11st Balance Game" />
         </Header>
-
+        
         <Search />
 
         <br />
 
         <EditButton />
 
-        <ArticleCollection />
-
+        <HomeCollection />
         <Footer />
       </Blur>
     </Section>
