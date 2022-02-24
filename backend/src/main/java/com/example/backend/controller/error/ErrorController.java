@@ -3,6 +3,7 @@ package com.example.backend.controller.error;
 import com.example.backend.controller.error.exception.UnauthorizedException;
 import com.example.backend.controller.error.exception.article.NoArticleException;
 import com.example.backend.controller.error.exception.articlecategory.NoArticleCategoryException;
+import com.example.backend.controller.error.exception.articlecomment.NoArticleCommentException;
 import com.example.backend.controller.error.exception.votehistory.DuplicateVoteException;
 import com.example.backend.dto.BaseResult;
 import com.example.backend.service.ResponseService;
@@ -41,5 +42,11 @@ public class ErrorController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<BaseResult> handleUnauthroizedException() {
         return ResponseEntity.ok(responseService.getFailBaseResult("접근 권한이 없습니다."));
+    }
+
+    @ExceptionHandler(NoArticleCommentException.class)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<BaseResult> noArticleCommentExcepption() {
+        return ResponseEntity.ok(responseService.getFailBaseResult("없는 게시글 댓글입니다."));
     }
 }
