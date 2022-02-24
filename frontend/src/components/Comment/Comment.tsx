@@ -3,8 +3,8 @@ import { observer } from 'mobx-react-lite';
 
 import CommentModel from '@/models/CommentModel';
 
-const Comment = ({ article }: { article: CommentModel }) => {
-  const { content, createdAt } = article;
+const Comment = ({ comment }: { comment: CommentModel }) => {
+  const { content, createdAt } = comment;
 
   return (
     <section className="history">

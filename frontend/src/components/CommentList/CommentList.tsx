@@ -1,18 +1,22 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
 
-import ArticleModel from '@/models/ArticleModel';
+import CommentModel from '@/models/CommentModel';
 import Comment from '@/components/Comment';
 
 interface ICommentListProps {
-  articles: ArticleModel[];
+  comments: CommentModel[];
 }
 
-const CommentList = ({ articles }: ICommentListProps) => {
+// interface ICommentListProps {
+//   comments: ICommentData[];
+// }
+
+const CommentList = ({ comments }: ICommentListProps) => {
   return (
     <section className="history-list">
-      {articles.map((article) => {
-        return <Comment key={`${article.id}-${article.title}`} article={article} />;
+      {comments.map((comment) => {
+        return <Comment key={`${comment.id}-${comment.createdAt}`} article={comment} />;
       })}
     </section>
   );
