@@ -44,10 +44,9 @@ public class ArticleController {
 
     @ApiOperation(value = "게시글 목록 조회", notes = "조건에 맞는 게시글 목록을 반환한다.")
     @GetMapping("")
-    public ResponseEntity<ListResult<ArticleGetResponse>> getArticles(@RequestParam Long offset,
+    public ResponseEntity<ListResult<ArticleGetResponse>> getArticles(@RequestParam(required = false) Long offset,
         @RequestParam(required = false) String sort, @RequestParam(required = false) String category,
         @RequestParam(required = false) String search) {
-
         List<Article> articles = articleService.getArticles(offset, sort, category, search);
         List<ArticleGetResponse> articleResponses = articles.stream().map(ArticleGetResponse::of)
             .collect(Collectors.toList());

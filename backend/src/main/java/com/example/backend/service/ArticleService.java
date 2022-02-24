@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ArticleService {
 
-    private static final int PAGE_SIZE = 10;
+    private static final int PAGE_SIZE = 6;
 
     private final ArticleRepository articleRepository;
     private final ArticleCategoryRepository articleCategoryRepository;
@@ -32,8 +32,9 @@ public class ArticleService {
     }
 
     public List<Article> getArticles(Long offset, String sort, String categoryName, String search) {
-        if (Objects.isNull(offset)) {
-            //TODO offset null 처리 따로 하기
+
+        if(offset == null) {
+            return articleRepository.findAllByPageSize(PAGE_SIZE);
         }
 
         Article article = articleRepository.findById(offset).orElseThrow(NoArticleException::new);

@@ -17,12 +17,6 @@ public class ErrorController {
 
     private final ResponseService responseService;
 
-    @ExceptionHandler(RuntimeException.class)
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<BaseResult> handleUnexpectedException() {
-        return ResponseEntity.ok(responseService.getFailBaseResult("unexpected error"));
-    }
-
     @ExceptionHandler(NoArticleException.class)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<BaseResult> handleNoArticleException() {
