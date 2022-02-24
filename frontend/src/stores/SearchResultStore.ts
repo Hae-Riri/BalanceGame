@@ -25,7 +25,7 @@ class SearchResultStore {
       searchKeyword: observable,
       fetchArticles: flow,
       setIsLoading: action,
-      setSearchKeyword: action,
+      setSearchKeyword: action.bound,
     });
     this.rootStore = rootStore;
   }
@@ -42,9 +42,9 @@ class SearchResultStore {
     this.searchKeyword = searchKeyword;
   }
 
-  *fetchArticles() {
+  *fetchArticles({ keyword, category }: { keyword: string; category: string }) {
     this.setIsLoading(true);
-    this.reset();
+    this.reset({ keyword, category });
 
     const { selectedCategory } = this.rootStore.uiStore;
 
@@ -63,8 +63,10 @@ class SearchResultStore {
     this.setIsLoading(false);
   }
 
-  reset() {
+  reset({ keyword, category }: { keyword: string; category: string }) {
     this.timeLine = { days: [], timeLine: {} };
+    this.searchKeyword = keyword;
+    this.rootStore.uiStore.setSelectedCategory(category);
   }
 
   groupByDay(data: ArticleModel[]) {

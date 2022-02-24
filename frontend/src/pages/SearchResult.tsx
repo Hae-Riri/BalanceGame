@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { when } from 'mobx';
 
 import StoreContext from '@/contexts/Store';
@@ -13,7 +14,13 @@ import Logo from '@/components/Logo';
 
 const SearchResult = () => {
   const rootStore: RootStore = useContext(StoreContext) as RootStore;
-  const { uiStore } = rootStore;
+  const { uiStore, searchResultStore: store } = rootStore;
+
+  const { search } = useLocation();
+  const params = new URLSearchParams(search);
+
+  const keyword = params.get('keyword') || '';
+  const category = params.get('category') as string;
 
   useEffect(() => {
     const disposer = when(
@@ -23,19 +30,19 @@ const SearchResult = () => {
       },
     );
 
-    rootStore.searchResultStore.fetchArticles();
+    rootStore.searchResultStore.fetchArticles({ keyword, category });
 
     return () => {
       disposer();
     };
-  }, [rootStore]);
+  }, [rootStore, keyword, category]);
 
   return (
     <Section className="search-result">
       <Blur>
         <Header className="search-result-header">
           <Logo />
-          <Search uiStore={uiStore} className="search-result-wrapper" />
+          <Search uiStore={uiStore} store={store} className="search-result-wrapper" />
         </Header>
 
         <SearchResultCollection />

@@ -51,7 +51,11 @@ class HomeStore {
   }
 
   reset() {
+    const defaultCategory = this.rootStore.uiStore.categories[0] as string;
+
     this.timeLine = { days: [], timeLine: {} };
+    this.rootStore.searchResultStore.searchKeyword = '';
+    this.rootStore.uiStore.setSelectedCategory(defaultCategory);
   }
 
   groupByDay(data: ArticleModel[]) {
