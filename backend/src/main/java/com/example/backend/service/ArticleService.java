@@ -34,7 +34,7 @@ public class ArticleService {
             // TODO: 에러 처리
         }
 
-        Article article = articleRepository.findById(offset).orElseThrow();
+        Article article = articleRepository.findById(offset).orElseThrow(NoArticleException::new);
 
         if (Objects.isNull(sort) && Objects.isNull(categoryName) && Objects.isNull(search)) {
             return articleRepository.findPerPageBeforeOrderByCreatedAt(article.getCreatedAt(), PAGE_SIZE);
