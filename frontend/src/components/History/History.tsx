@@ -8,6 +8,7 @@ const History = ({ article }: { article: ArticleModel }) => {
   const { title, content, createdAt, voteCount } = article;
   const { leftTime, unit } = convertTimeToLeftTime(createdAt);
 
+  // TODO: 해당 링크 연결하기
   // const moveArticlePage = (): void => {
   //   document.location.href = `/article?articleId=${id}`;
   // }
