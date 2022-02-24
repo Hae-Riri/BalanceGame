@@ -4,6 +4,7 @@ import HomeStore from '@/stores/HomeStore';
 import UIStore from '@/stores/UIStore';
 import SearchResultStore from './SearchResultStore';
 import AriticleStore from './ArticleStore';
+import EditStore from './EditStore';
 
 class RootStore {
   homeStore: HomeStore;
@@ -14,6 +15,8 @@ class RootStore {
 
   uiStore: UIStore;
 
+  editStore: EditStore;
+
   isLoading = true;
 
   constructor() {
@@ -23,6 +26,8 @@ class RootStore {
     // 등록
     this.articleStore = new AriticleStore(this);
 
+    this.editStore = new EditStore(this);
+    
     makeObservable(this, {
       isLoading: observable,
       setIsLoading: action,
