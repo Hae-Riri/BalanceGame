@@ -8,7 +8,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import RootStore from '@/stores/RootStore';
 import StoreContext from '@/contexts/Store';
-import EditButton from '@/components/EditButton';
 import HomeCollection from '@/collections/HomeCollection';
 import Logo from '@/components/Logo';
 
@@ -38,12 +37,6 @@ const Home = () => {
           <Title text="Balance Game" />
         </Header>
         
-        <Search />
-
-        <br />
-
-        <EditButton />
-
         <HomeCollection />
         <Footer />
       </Blur>

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 import {
   Modal,
   ModalOverlay,
@@ -17,6 +17,8 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import EditorContentSection from '../EditorContentSection';
 import EditorCategoriesSection from '../EditorCategoriesSection';
 import EditorPasswordSection from '../EditorPasswordSection';
+import RootStore from '@/stores/RootStore';
+import StoreContext from '@/contexts/Store';
 
 export interface EditFormInput {
   title: String;
@@ -24,10 +26,13 @@ export interface EditFormInput {
   voteItem2: String;
   content: String;
   password: String;
-  category: String[];
+  category: String;
 }
 
 export const EditModal = ({ onClose, isOpen }: UseDisclosureProps) => {
+  const rootStore: RootStore = useContext(StoreContext) as RootStore;
+  const { editStore } = rootStore;
+  const {  postArticle } = editStore;
 
   const modalClose = () => {
     if (onClose) {
@@ -70,8 +75,7 @@ export const EditModal = ({ onClose, isOpen }: UseDisclosureProps) => {
   const onSubmit: SubmitHandler<EditFormInput> = data => {
     validateCategory();
     validatePassword();
-    // TODO : 호출하여 전달하기
-    console.log(data);
+    postArticle(data);
   };
 
   return (

@@ -1,11 +1,11 @@
 import React from 'react';
 import {
   ChakraProvider,
-  IconButton,
+  Button,
   useDisclosure,
-  UseDisclosureReturn
+  UseDisclosureReturn,
+  Flex
 } from '@chakra-ui/react';
-import { MdAddCircleOutline } from 'react-icons/md';
 import EditModal from '../EditModal';
 
 const EditButton = () => {
@@ -13,7 +13,9 @@ const EditButton = () => {
 
   return (
     <ChakraProvider>
-      <IconButton aria-label='질문등록' onClick={onOpen} icon={<MdAddCircleOutline />} size="lg" />
+      <Flex justify="center" alignItems="center">
+        <Button className="edit-button" aria-label='질문등록' onClick={onOpen} size="sm" bg="lavender" width="250px">밸런스 게임 생성하기</Button>
+      </Flex>
       <EditModal onClose={onClose} isOpen={isOpen} />
     </ChakraProvider>
   );
