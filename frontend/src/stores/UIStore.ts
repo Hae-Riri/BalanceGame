@@ -13,6 +13,8 @@ class UIStore {
 
   selectedArticleId: number = 0;
 
+  isArticleReadMoreEnd = false;
+
   constructor(rootStore: RootStore) {
     makeObservable(this, {
       isHomeSearchDropDownActive: observable,
@@ -23,6 +25,7 @@ class UIStore {
       setCategories: action.bound,
       setSelectedCategory: action.bound,
       selectArticle: action.bound,
+      isArticleReadMoreEnd: observable,
     });
     this.rootStore = rootStore;
   }
@@ -43,6 +46,9 @@ class UIStore {
     this.selectedArticleId = articleId; 
   }
 
+  setIsArticleReadMoreEnd(isArticleReadMoreEnd: boolean) {
+    this.isArticleReadMoreEnd = isArticleReadMoreEnd;
+  }
 }
 
 export default UIStore;
