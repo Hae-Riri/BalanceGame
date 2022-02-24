@@ -15,8 +15,8 @@ import Section from '@/components/Section';
 import Title from '@/components/Title';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import CommentList from '@/components/CommentList';
-import { ICommentData } from '@/models/CommentModel';
+// import CommentList from '@/components/CommentList';
+// import { ICommentData } from '@/models/CommentModel';
 
 interface IArticleProp {
   articleId: String;
@@ -34,13 +34,13 @@ const dummy: IArticleProp = {
   "content": "둘 중 하나를 택하세요 안그러면 죽습니다."
 }
 
-const dummy2: ICommentData[] = [
-  {
-    id: 3,
-    content: "이거참 멋지군요",
-    createdAt: "2022-03-20"
-  }
-]
+// const dummy2: ICommentData[] = [
+//   {
+//     id: 3,
+//     content: "이거참 멋지군요",
+//     createdAt: "2022-03-20"
+//   }
+// ]
 
 const Article = () => {
 
@@ -126,7 +126,7 @@ const Article = () => {
             <Button size="xs" variant="ghost" bg="lavender" rightIcon={<ArrowRightIcon />}>다음 질문</Button>
           </Flex>
 
-          <CommentList articles={dummy2} />
+          {/* <CommentList articles={dummy2} /> */}
           <Footer />
         </Blur>
       </Section>

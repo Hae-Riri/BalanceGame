@@ -1,7 +1,6 @@
 import { extendObservable, makeObservable } from 'mobx';
+import AriticleStore from '@/stores/ArticleStore';
 // import { action, extendObservable, makeObservable, observable } from 'mobx';
-import HomeStore from '../stores/HomeStore';
-
 export interface ICommentData {
   id: number;
   content: string;
@@ -9,7 +8,7 @@ export interface ICommentData {
 }
 
 class CommentModel {
-  store: HomeStore;
+  store: AriticleStore;
 
   id = 0;
 
@@ -17,7 +16,7 @@ class CommentModel {
 
   createdAt = '';
 
-  constructor(store: HomeStore, data: ICommentData) {
+  constructor(store: AriticleStore, data: ICommentData) {
     makeObservable(this, {
       // isHomeAppIconDragEnter: observable,
       // setIsHomeAppIconDragEnter: action.bound,
