@@ -176,4 +176,3 @@ gradle-app.setting
 #application-db.yml
 backend/src/main/resources/application-db.yaml
 # End of https://www.toptal.com/developers/gitignore/api/java,gradle,intellij+all,macos
-backend/src/main/resources/*
