@@ -11,6 +11,8 @@ class UIStore {
 
   selectedCategory = '전체 보기';
 
+  selectedArticleId: number = 0;
+
   constructor(rootStore: RootStore) {
     makeObservable(this, {
       isHomeSearchDropDownActive: observable,
@@ -34,6 +36,11 @@ class UIStore {
   setCategories(categories: string[]) {
     this.categories = categories;
   }
+
+  selectArticle(articleId: number){
+    this.selectedArticleId = articleId; 
+  }
+
 }
 
 export default UIStore;

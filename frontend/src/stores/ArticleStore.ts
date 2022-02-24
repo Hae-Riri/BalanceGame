@@ -10,11 +10,10 @@ class AriticleStore {
 
   isLoading = true;
 
-  // getter를 사용하지 않고 직접접근하기 위해서는 public을 붙여주자
   public comments: CommentModel[] = [];
 
-  // 단건 조회시 저장되는 
-  public article: ArticleModel = new ArticleModel(this, {
+  public article: ArticleModel = {
+    "store": this,
     "id": 1,
     "title": "",
     "voteItem1": "",
@@ -23,7 +22,7 @@ class AriticleStore {
     "item2stat": "",
     "content": "",
     "createdAt": ""
-  });
+  };
   
   constructor(rootStore: RootStore) {
     makeObservable(this, {
@@ -41,6 +40,10 @@ class AriticleStore {
     this.comments = comments.map((comment: ICommentData)=> new CommentModel(this, comment));
   }
 
+  setArticle(article: ArticleModel) {
+    this.article = article;
+  }
+
   setIsLoading(isLoading: boolean) {
     this.isLoading = isLoading;
   }
@@ -49,9 +52,11 @@ class AriticleStore {
     this.setIsLoading(true);
 
     try {
-      const { data } = yield ArticleRepository.getComments();
+      const { data : commentData } = yield ArticleRepository.getComments();
+      const { data : articleData } = yield ArticleRepository.getArticle(this.rootStore.uiStore.selectedArticleId);
       // 배열형태
-      this.setComments(data);
+      this.setComments(commentData);
+      this.setArticle(articleData);
     } catch (e) {
       // TODO: handle error
       // eslint-disable-next-line no-console
@@ -62,6 +67,9 @@ class AriticleStore {
   }
   
   // flow method 여러개 만들기
+
+  // 댓글을 post하는 로직
+  
 
 }
 

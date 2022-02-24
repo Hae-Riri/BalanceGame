@@ -3,6 +3,7 @@ import { when } from 'mobx';
 import {
   ChakraProvider,
 } from '@chakra-ui/react';
+import {useLocation} from 'react-router-dom';
 import Blur from '@/components/Blur';
 import Section from '@/components/Section';
 import Title from '@/components/Title';
@@ -16,6 +17,11 @@ import Logo from '@/components/Logo';
 
 const Article = () => {
   const rootStore: RootStore = useContext(StoreContext) as RootStore;
+  
+  const { search } = useLocation();
+  const params = new URLSearchParams(search);
+
+  const selectedArticleId = parseInt(params.get('articleId') || "0", 10) ;
 
   useEffect(() => {
     const disposer = when(
@@ -26,10 +32,11 @@ const Article = () => {
     );
 
     rootStore.articleStore.fetchArticle();
+    rootStore.uiStore.selectArticle(selectedArticleId);
     return () => {
       disposer();
     };
-  }, [rootStore]);
+  }, [rootStore, selectedArticleId]);
 
   return (
     <ChakraProvider>

@@ -11,10 +11,9 @@ export interface IArticleData {
   content: string;
   voteItem1: string;
   voteItem2: string;
-  voteCount: number;
   createdAt: string;
-  item2stat: string;
   item1stat: string;
+  item2stat: string;
 }
 
 class ArticleModel {
