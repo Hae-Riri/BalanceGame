@@ -39,7 +39,6 @@ public class ArticleService {
     }
 
     public List<Article> getArticles(Long offset, String sort, String categoryName, String search) {
-
         if (offset == null) {
             return articleRepository.findAllByPageSize(PAGE_SIZE);
         }
