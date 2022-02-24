@@ -1,12 +1,13 @@
-springdoc:
-  swagger-ui:
-    path: /swagger-ui-voteBoard.html
-    operationsSorter: method
 spring:
+  profiles:
+    include: db
   jpa:
     show-sql: true
     properties:
       hibernate.format_sql: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 logging:
   level:
     org.springframework.web.servlet: trace

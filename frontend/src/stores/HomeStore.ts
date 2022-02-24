@@ -2,7 +2,7 @@ import { action, flow, makeObservable, observable } from 'mobx';
 
 import dayjs from 'dayjs';
 import RootStore from '@/stores/RootStore';
-import ArticleModel, { IArticleData } from '@/models/ArticleModel';
+import ArticleModel from '@/models/ArticleModel';
 import HomeRepository from '@/repositories/HomeRepository';
 
 class HomeStore {
@@ -14,13 +14,18 @@ class HomeStore {
 
   public timeLine: { days: string[]; timeLine: {} } = { days: [], timeLine: {} };
 
+  public lastOffset: number = 6;
+
   constructor(rootStore: RootStore) {
     makeObservable(this, {
       isLoading: observable,
       articles: observable,
       timeLine: observable,
+      lastOffset: observable,
       fetchArticles: flow,
       setIsLoading: action,
+      setLastOffset: action.bound,
+      setTimeLines: action.bound,
     });
     this.rootStore = rootStore;
   }
@@ -29,15 +34,27 @@ class HomeStore {
     this.isLoading = isLoading;
   }
 
-  setArticles(articles: ArticleModel[]) {
-    this.articles = articles.map((article: IArticleData) => new ArticleModel(this, article));
+  setArticles(articles: any[]) {
+    this.articles = articles.map((article: any) => new ArticleModel(this, article));
   }
 
-  *fetchArticles() {
+  setTimeLines(articles: any[]) {
+    this.timeLine = this.groupByDay(articles.map((article: any) => new ArticleModel(this, article)));
+  }
+
+  setLastOffset(lastOffset: number) {
+    this.lastOffset = lastOffset;
+  }
+
+  async fetchArticles() {
     this.setIsLoading(true);
+    this.reset();
+
     try {
-      const { data } = yield HomeRepository.getArticle();
-      this.setArticles(data);
+      const response = await HomeRepository.getArticle('');
+      this.setArticles(response[0].data.data);
+      const articleLength = response[0].data.data.length - 1;
+      this.setLastOffset(response[0]?.data?.data[articleLength]?.id || undefined);
       this.timeLine = this.groupByDay(this.articles);
     } catch (e) {
       // TODO: handle error
@@ -46,6 +63,15 @@ class HomeStore {
     }
 
     this.setIsLoading(false);
+  }
+
+  reset() {
+    const defaultCategory = this.rootStore.uiStore.categories[0] as string;
+
+    this.lastOffset = 6;
+    this.timeLine = { days: [], timeLine: {} };
+    this.rootStore.searchResultStore.searchKeyword = '';
+    this.rootStore.uiStore.setSelectedCategory(defaultCategory);
   }
 
   groupByDay(data: ArticleModel[]) {

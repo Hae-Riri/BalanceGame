@@ -1,5 +1,6 @@
 import { extendObservable, makeObservable } from 'mobx';
-// import { action, extendObservable, makeObservable, observable } from 'mobx';
+
+import SearchResultStore from '@/stores/SearchResultStore';
 import HomeStore from '../stores/HomeStore';
 
 export interface IArticleData {
@@ -8,10 +9,14 @@ export interface IArticleData {
   content: string;
   createdAt: string;
   voteCount: number;
+  articleCategoryDto: {
+    id: number;
+    name: string;
+  };
 }
 
 class ArticleModel {
-  store: HomeStore;
+  store: HomeStore | SearchResultStore;
 
   id = 0;
 
@@ -23,12 +28,21 @@ class ArticleModel {
 
   voteCount = 0;
 
-  constructor(store: HomeStore, data: IArticleData) {
-    makeObservable(this, {
-      // isHomeAppIconDragEnter: observable,
-      // setIsHomeAppIconDragEnter: action.bound,
+  articleCategoryDto = {
+    id: 0,
+    name: '',
+  };
+
+  constructor(store: HomeStore | SearchResultStore, data: any) {
+    makeObservable(this, {});
+    extendObservable(this, {
+      id: data?.id || this.id,
+      title: data?.title || this.title,
+      content: data?.content || this.content,
+      createdAt: data?.createdAt || this.createdAt,
+      voteCount: data?.totalCount || this.voteCount,
+      articleCategoryDto: data?.articleCategoryDto || this.articleCategoryDto,
     });
-    extendObservable(this, data);
     this.store = store;
   }
 }
