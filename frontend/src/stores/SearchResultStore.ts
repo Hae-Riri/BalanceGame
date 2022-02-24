@@ -19,6 +19,11 @@ class SearchResultStore {
 
   private categoryMatch = {
     '백엔드': 'BackEnd',
+    '프론트엔드': 'FrontEnd',
+    '데이터분석': 'DataAnaylsis',
+    'AI': 'AI',
+    'Job담':'Job담',
+    '전체 검색' : ''
   }
 
   constructor(rootStore: RootStore) {
