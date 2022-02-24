@@ -5,6 +5,7 @@ export interface ICommentData {
   id: number;
   content: string;
   createdAt: string;
+  modifiedAt: string;
 }
 
 class CommentModel {
@@ -15,6 +16,8 @@ class CommentModel {
   content = '';
 
   createdAt = '';
+
+  modifiedAt = '';
 
   constructor(store: AriticleStore, data: ICommentData) {
     makeObservable(this, {

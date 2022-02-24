@@ -12,16 +12,15 @@ import CommentList from '@/components/CommentList';
 import AriticleStore from '@/stores/ArticleStore';
 
 const ArticleCommentSection = ({ store } : { store: AriticleStore }) => {
-  const { comments } = store;
-  const [input, setInput] = useState<String>("");
+  const { comments, postComment } = store;
+  const [input, setInput] = useState<string>("");
 
   const handleInput: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     setInput(event.target.value);
   }
 
   const submitComment =() => {
-    // TODO: 코멘트 전달 로직
-    console.log(input);
+    postComment(input);
   }
 
   return (

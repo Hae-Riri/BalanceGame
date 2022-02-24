@@ -16,12 +16,18 @@ class AriticleStore {
     "store": this,
     "id": 1,
     "title": "",
-    "voteItem1": "",
-    "voteItem2": "",
-    "item1stat": "",
-    "item2stat": "",
+    "leftItem": "",
+    "rightItem": "",
+    "leftCount": 0,
+    "rightCount": 0,
     "content": "",
-    "createdAt": ""
+    "createdAt": "",
+    "voteCount": 0,
+    "articleCommentDtos": [],
+    "articleCategoryDto": {
+      "id": 1,
+      "name": "BackEnd"
+    }
   };
   
   constructor(rootStore: RootStore) {
@@ -29,15 +35,19 @@ class AriticleStore {
       comments: observable,
       article: observable,
       isLoading: observable,
-      setComments: action,
+      setArticle: action.bound,
+      setComments: action.bound,
       setIsLoading: action,
-      fetchArticle: flow,
+      fetchArticle: flow.bound,
+      patchVote: flow.bound,
+      postComment: flow.bound,
     });
     this.rootStore = rootStore;
   }
 
-  setComments(comments: CommentModel[]) {
-    this.comments = comments.map((comment: ICommentData)=> new CommentModel(this, comment));
+  setComments(articleData: ArticleModel) {
+    const { articleCommentDtos } = articleData;
+    this.comments = articleCommentDtos.map((comment: ICommentData)=> new CommentModel(this, comment));
   }
 
   setArticle(article: ArticleModel) {
@@ -52,11 +62,10 @@ class AriticleStore {
     this.setIsLoading(true);
 
     try {
-      // const { data : commentData } = yield ArticleRepository.getComments();
       const { data : articleData } = yield ArticleRepository.getArticle(this.rootStore.uiStore.selectedArticleId);
       // 배열형태
-      // this.setComments(commentData);
-      this.setArticle(articleData);
+      this.setArticle(articleData.data);
+      this.setComments(articleData.data);
     } catch (e) {
       // TODO: handle error
       // eslint-disable-next-line no-console
@@ -65,11 +74,38 @@ class AriticleStore {
 
     this.setIsLoading(false);
   }
-  
-  // flow method 여러개 만들기
 
   // 댓글을 post하는 로직
-  
+  *patchVote(selectedVote: string) {
+    this.setIsLoading(true);
+
+    try {
+      yield ArticleRepository.fetchVote(this.rootStore.uiStore.selectedArticleId, selectedVote);
+      // 배열형태
+    } catch (e) {
+      // TODO: handle error
+      // eslint-disable-next-line no-console
+      console.error(e);
+    }
+
+    this.setIsLoading(false);
+  }
+
+  *postComment(content: string) {
+    this.setIsLoading(true);
+
+    try {
+      yield ArticleRepository.postComment(this.rootStore.uiStore.selectedArticleId, content);
+      this.fetchArticle();
+      // 배열형태
+    } catch (e) {
+      // TODO: handle error
+      // eslint-disable-next-line no-console
+      console.error(e);
+    }
+
+    this.setIsLoading(false);
+  }
 
 }
 

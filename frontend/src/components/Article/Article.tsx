@@ -22,13 +22,13 @@ interface IArticleProp {
 
 const Article = ({ store, uiStore } : IArticleProp) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { article } = store;
+  const { article,  patchVote } = store;
   const { selectedArticleId } = uiStore;
   const [voted, setVoted] = useState<boolean>(false);
   const [selectedVote, selectVote] = useState<string>("");
 
   const enterOtherArticle = (offset: number): void => {
-    if(selectedArticleId + offset < 0) {
+    if(selectedArticleId + offset < 1) {
       alert("마지막 질문 입니다.");
     }else {
       document.location.href = `/article?articleId=${selectedArticleId + offset}`;
@@ -39,7 +39,7 @@ const Article = ({ store, uiStore } : IArticleProp) => {
       if(!voted){
         setVoted(true);
         selectVote(clickedVote);
-        // TODO : 선택한 vote에 대한 전달 및 post 수행
+        patchVote(clickedVote);
       }
   }
 
@@ -78,21 +78,21 @@ const Article = ({ store, uiStore } : IArticleProp) => {
               h="full"
               display="flex"
               alignItems="center"
-              onClick={()=>vote("voteItem1")}
+              onClick={()=>vote("left")}
             >
               <VStack w="full">
                 {
-                  article.voteItem1?.split("\n").map((text) => {
-                    return <Text fontSize="sm" color="red.500" w="full" align="center">{text}</Text>
+                  article.leftItem?.split("\n").map((text) => {
+                    return <Text fontSize="md" color="red.500" w="full" align="center">{text}</Text>
                   })
                 }
                 {
                   voted && (
-                    <Text fontSize="2xl" color="red.500" w="full" align="center">{article.item1stat}표</Text>
+                    <Text fontSize="2xl" color="red.500" w="full" align="center">{article.leftCount}표</Text>
                   )
                 }
                 {
-                  selectedVote === "voteItem1" && (
+                  selectedVote === "left" && (
                     <CheckIcon color='green.500'/>
                   )
                 }
@@ -110,21 +110,21 @@ const Article = ({ store, uiStore } : IArticleProp) => {
               display="flex"
               alignItems="center"
               justifyContent="center"
-              onClick={()=>vote("voteItem2")}
+              onClick={()=>vote("right")}
             >
               <VStack w="full">
                 {
-                  article.voteItem2?.split("\n").map((text) => {
-                    return <Text fontSize="sm" color="blue.500" w="full" align="center">{text}</Text>
+                  article.rightItem?.split("\n").map((text) => {
+                    return <Text fontSize="md" color="blue.500" w="full" align="center">{text}</Text>
                   })
                 }
                 {
                   voted && (
-                    <Text fontSize="2xl" color="blue.500" w="full" align="center">{article.item2stat}표</Text>
+                    <Text fontSize="2xl" color="blue.500" w="full" align="center">{article.rightCount}표</Text>
                   )
                 }
                 {
-                  selectedVote === "voteItem2" && (
+                  selectedVote === "right" && (
                     <CheckIcon color='green.500'/>
                   )
                 }
