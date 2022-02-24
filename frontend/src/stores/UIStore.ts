@@ -18,9 +18,11 @@ class UIStore {
       isHomeSearchDropDownActive: observable,
       categories: observable,
       selectedCategory: observable,
+      selectedArticleId: observable,
       setIsHomeSearchDropDownActive: action.bound,
       setCategories: action.bound,
       setSelectedCategory: action.bound,
+      selectArticle: action.bound,
     });
     this.rootStore = rootStore;
   }

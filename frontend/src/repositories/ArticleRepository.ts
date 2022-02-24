@@ -4,7 +4,7 @@ class AriticleRepository {
   COMMENT_URL = process.env.ENV === 'local' ? '/comments' : '/v1/comments';
 
   // TODO : 추후 URL 변경 필요
-  ARTICLE_URL = process.env.ENV === 'local' ? '/article' : '/v1/article'; 
+  ARTICLE_URL = process.env.ENV === 'local' ? '/articles' : '/v1/articles'; 
 
   constructor(url: string) {
     this.COMMENT_URL = url || this.COMMENT_URL;
@@ -17,7 +17,7 @@ class AriticleRepository {
   
   getArticle(articleId : number) {
     // TODO : 추후 URL 변경 필요
-    return API.get(`${this.ARTICLE_URL}?articleId=${articleId}`);
+    return API.get(`${this.ARTICLE_URL}/${articleId}`);
   }
 }
 

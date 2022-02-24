@@ -31,8 +31,8 @@ const Article = () => {
       },
     );
 
-    rootStore.articleStore.fetchArticle();
     rootStore.uiStore.selectArticle(selectedArticleId);
+    rootStore.articleStore.fetchArticle();
     return () => {
       disposer();
     };

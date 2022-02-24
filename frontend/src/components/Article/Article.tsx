@@ -6,13 +6,14 @@ import {
   Button,
   Flex,
   IconButton,
-  // useDisclosure
+  useDisclosure
 } from '@chakra-ui/react';
+
 import {ArrowLeftIcon, ArrowRightIcon, EditIcon, CheckIcon } from '@chakra-ui/icons';
 import { observer } from 'mobx-react-lite';
 import AriticleStore from '@/stores/ArticleStore';
 import UIStore from '@/stores/UIStore';
-// import ArticleModal from '../ArticleModal';
+import ArticleModal from '../ArticleModal';
 
 interface IArticleProp {
   store: AriticleStore;
@@ -20,19 +21,19 @@ interface IArticleProp {
 }
 
 const Article = ({ store, uiStore } : IArticleProp) => {
-  // const { isOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { article } = store;
-  const { selectedArticleId} = uiStore;
+  const { selectedArticleId } = uiStore;
   const [voted, setVoted] = useState<boolean>(false);
   const [selectedVote, selectVote] = useState<string>("");
 
   const enterOtherArticle = (offset: number): void => {
-    document.location.href = `/article?articleId=${selectedArticleId + offset}`;
+    if(selectedArticleId + offset < 0) {
+      alert("마지막 질문 입니다.");
+    }else {
+      document.location.href = `/article?articleId=${selectedArticleId + offset}`;
+    }
   };
-
-  const enterEditArticle = (): void => {
-    document.location.href = `/article/edit?articleId=${selectedArticleId}`;
-  }
 
   const vote = (clickedVote: string) : void => {
       if(!voted){
@@ -54,7 +55,7 @@ const Article = ({ store, uiStore } : IArticleProp) => {
                 borderRadius="none"
                 p={0} ml={2} mr={0}
                 icon={<EditIcon/>}
-                onClick={enterEditArticle}
+                onClick={onOpen}
               />
             </Flex>
         </Container>
@@ -158,7 +159,7 @@ const Article = ({ store, uiStore } : IArticleProp) => {
           onClick={()=>enterOtherArticle(1)}
         >다음 질문</Button>
       </Flex>
-      {/* <ArticleModal isOpen={isOpen} onClose={onClose}/> */}
+      <ArticleModal isOpen={isOpen} onClose={onClose} selectedArticleId={selectedArticleId}/>
     </>
   );
 }

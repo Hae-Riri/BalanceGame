@@ -8,6 +8,10 @@ const History = ({ article }: { article: ArticleModel }) => {
   const { title, content, createdAt, voteCount } = article;
   const { leftTime, unit } = convertTimeToLeftTime(createdAt);
 
+  // const moveArticlePage = (): void => {
+  //   document.location.href = `/article?articleId=${id}`;
+  // }
+
   return (
     <section className="history">
       <h3>{title}</h3>

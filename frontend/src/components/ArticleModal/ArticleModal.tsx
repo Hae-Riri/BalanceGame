@@ -1,50 +1,84 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Modal,
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalCloseButton,
   ModalBody,
   FormControl,
   FormHelperText,
-  FormLabel,
+  FormErrorMessage,
   PinInput,
-  PinInputField
+  PinInputField,
+  ModalFooter,
+  Flex,
+  Button
 } from '@chakra-ui/react';
 
+interface IArticleModal {
+  isOpen: boolean;
+  onClose : ()=>void;
+  selectedArticleId: number;
+}
 
-const ArticleModal = ({isOpen, onClose}: {isOpen: boolean, onClose : ()=>void}) => {
-  const [password, setPassword] = useState<string>('');
+const ArticleModal = (props: IArticleModal) => {
+  const {isOpen, onClose, selectedArticleId} = props;
+  const [match, setMatch] = useState(false);
+  const [password, setPassword] = useState("");
+  const initialRef = React.useRef();
 
-  useEffect(()=> {
-    console.log(password);
-  }, [password])
+  const enterEditArticle = (): void => {
+    document.location.href = `/article/edit?articleId=${selectedArticleId}`;
+  }
+  const handleChange = (value: string) => {
+    setPassword(value);
+    setMatch(false);
+  }
+  const submitPassword = () => {
+    // TODO : POST 작업 요청 후, 결과 값을 통해서 
+    const success = true;
+    if(success) {
+      setMatch(true);
+    }
+  };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal 
+        isOpen={isOpen} 
+        onClose={onClose} 
+        size="xs"
+        initialFocusRef={initialRef}
+      >
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Modal Title</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
-          <FormControl isRequired>
-            <FormLabel htmlFor='password' fontSize="sm">비밀번호</FormLabel>
+        <ModalHeader fontSize="md">비밀번호 입력</ModalHeader>
+          {/* <ModalCloseButton /> */}
+          <ModalBody p={5}>
+            <FormControl isInvalid={!match && !!password}>
               <PinInput
                 id="password"
                 mask
                 size="sm"
                 placeholder='*'
-                onChange={(value) => setPassword(value)}
+                isInvalid={!match && !!password}
+                onChange={handleChange}
+                onComplete={submitPassword}
               >
-                <PinInputField />
+                <PinInputField ref={initialRef}/>
                 <PinInputField />
                 <PinInputField />
                 <PinInputField />
               </PinInput>
-            <FormHelperText fontSize="sm">수정시 필요한 비밀번호를 입력하세요.</FormHelperText>
-          </FormControl>
-        </ModalBody>
+              <FormHelperText fontSize="sm">비밀번호를 입력하세요.</FormHelperText>
+              <FormErrorMessage mt={3}>🚨 비밀번호가 올바르지 않습니다.</FormErrorMessage>
+            </FormControl>
+          </ModalBody>
+          <ModalFooter>
+            <Flex align="flex-end">
+              <Button disabled={!match} size="sm" mr={1} onClick={enterEditArticle}>수정</Button>
+              <Button disabled={!match} size="sm" >삭제</Button>
+            </Flex>
+          </ModalFooter>
       </ModalContent>
     </Modal>
   )

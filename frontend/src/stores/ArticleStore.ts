@@ -52,10 +52,10 @@ class AriticleStore {
     this.setIsLoading(true);
 
     try {
-      const { data : commentData } = yield ArticleRepository.getComments();
+      // const { data : commentData } = yield ArticleRepository.getComments();
       const { data : articleData } = yield ArticleRepository.getArticle(this.rootStore.uiStore.selectedArticleId);
       // 배열형태
-      this.setComments(commentData);
+      // this.setComments(commentData);
       this.setArticle(articleData);
     } catch (e) {
       // TODO: handle error

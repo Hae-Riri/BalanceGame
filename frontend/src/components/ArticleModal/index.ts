@@ -1,3 +1,3 @@
-import ArticleModal from '@/models/ArticleModel';
+import ArticleModal from './ArticleModal';
 
 export default ArticleModal;
